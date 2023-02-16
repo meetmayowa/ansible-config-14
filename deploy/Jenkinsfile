@@ -1,3 +1,5 @@
+
+
 pipeline {
   agent any
 
@@ -20,8 +22,7 @@ pipeline {
 
       stage('Checkout SCM') {
          steps{
-            git branch: 'main', url: 'https://github.com/Livingstone95/ansible-config.git'
-
+            git branch: 'main', url: 'https://github.com/meetmayowa/ansible-config.git'
          }
        }
 
@@ -34,7 +35,7 @@ pipeline {
 
       stage('Run Ansible playbook') {
         steps {
-           ansiblePlaybook become: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
+	   ansiblePlaybook become: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
          }
       }
 
@@ -46,4 +47,5 @@ pipeline {
    }
 
 }
+
 
